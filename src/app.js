@@ -1,4 +1,6 @@
 require('dotenv').config()
+// IF USING API KEY
+// const bearer = require('../middleware/bearer')
 const express = require('express')
 const errorCatch = require('../middleware/error')
 const morgan = require('morgan')
@@ -8,9 +10,13 @@ const { PORT, NODE_ENV } = require('./config')
 
 const app = express()
 
+// MIDDLEWARE 
 const morganOption = (NODE_ENV === 'production')
     ? 'tiny'
     : 'dev';
+
+// if using bearer authorization 
+// app.use(bearer)
 
 app.use(morgan(morganOption))
 app.use(cors())
