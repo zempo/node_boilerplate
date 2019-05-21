@@ -1,34 +1,42 @@
-require('dotenv').config()
+require("dotenv").config();
 // IF USING API KEY
 // const bearer = require('../middleware/bearer')
-const express = require('express')
-const errorCatch = require('../middleware/error')
-const morgan = require('morgan')
-const cors = require('cors')
-const helmet = require('helmet')
-const { PORT, NODE_ENV } = require('./config')
+const express = require("express");
+const errorCatch = require("../middleware/error");
+const morgan = require("morgan");
+const cors = require("cors");
+const helmet = require("helmet");
+const logger = require("../middleware/logger").logger;
+const { PORT, NODE_ENV } = require("./config");
+const winston = require("winston");
+// routes
+// const example = require('../routes/api/example')
 
-const app = express()
+const app = express();
 
-// MIDDLEWARE 
-const morganOption = (NODE_ENV === 'production')
-    ? 'tiny'
-    : 'dev';
-
-// if using bearer authorization 
+// MIDDLEWARE
+const morganOption = NODE_ENV === "production" ? "tiny" : "dev";
+if (NODE_ENV !== "production") {
+  logger.add(
+    new winston.transports.Console({
+      format: winston.format.simple()
+    })
+  );
+}
+// if using bearer authorization
 // app.use(bearer)
 
-app.use(morgan(morganOption))
-app.use(cors())
-app.use(helmet())
-app.use(errorCatch)
+app.use(morgan(morganOption));
+app.use(cors());
+app.use(helmet());
+app.use(errorCatch);
 
-app.get('/', (req, res) => {
-    res.send('hello boilerplate')
-})
+app.get("/", (req, res) => {
+  res.send("hello boilerplate");
+});
 
 app.listen(PORT, () => {
-    console.log(`Server listening at http://localhost:${PORT}`)
-})
+  console.log(`Server listening at http://localhost:${PORT}`);
+});
 
-module.exports = app
+module.exports = app;
