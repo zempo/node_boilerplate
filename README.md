@@ -13,6 +13,24 @@ Complete the following steps to start a new project (NEW-PROJECT-NAME):
 5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
 6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
 
+## Database (Sql)
+
+1. Run `npm i knex` and then `npm i pg` (for postgres, in this case).
+2. Reference the [Knex Documentation](https://knexjs.org/) for more.
+3. A sample db url has been added to the example env
+4. Getting started
+
+```
+const knex = require("knex");
+
+const knexInstance = knex({
+  client: "pg",
+  connection: process.env.DB_URL
+});
+
+console.log("connection successful");
+```
+
 ## Scripts
 
 Start the application `npm start`
