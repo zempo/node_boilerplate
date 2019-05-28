@@ -1,4 +1,5 @@
 // for any testing databases
+process.env.TZ = 'UTC'
 require("dotenv").config();
 
 const { expect } = require("chai");
