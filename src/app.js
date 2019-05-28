@@ -29,10 +29,11 @@ if (NODE_ENV !== "production") {
 app.use(morgan(morganOption));
 app.use(cors());
 app.use(helmet());
-app.use(errorCatch);
 
 app.get("/", (req, res) => {
   res.send("hello boilerplate");
 });
+
+app.use(errorCatch);
 
 module.exports = app;
