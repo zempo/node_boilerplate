@@ -10,7 +10,7 @@ const logger = require("../middleware/logger").logger;
 const { PORT, NODE_ENV } = require("./config");
 const winston = require("winston");
 // routes
-// const example = require('../routes/api/example')
+// const exampleRouter = require('../routes/api/example')
 
 const app = express();
 
@@ -29,6 +29,9 @@ if (NODE_ENV !== "production") {
 app.use(morgan(morganOption));
 app.use(cors());
 app.use(helmet());
+
+// if using routes
+// app.use(exampleRouter)
 
 app.get("/", (req, res) => {
   res.send("hello boilerplate");
