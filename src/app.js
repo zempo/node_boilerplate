@@ -13,6 +13,8 @@ const winston = require("winston");
 // const exampleRouter = require('../routes/api/example')
 
 const app = express();
+// make sure cors() is at the top
+app.use(cors());
 
 // MIDDLEWARE
 const morganOption = NODE_ENV === "production" ? "tiny" : "dev";
@@ -27,7 +29,6 @@ if (NODE_ENV !== "production") {
 // app.use(bearer)
 
 app.use(morgan(morganOption));
-app.use(cors());
 app.use(helmet());
 
 // if using routes
