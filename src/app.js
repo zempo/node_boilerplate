@@ -1,12 +1,13 @@
 require("dotenv").config();
 // IF USING API KEY
-// const bearer = require('../middleware/bearer')
+const bearer = require("./middleware/bearer");
+//
 const express = require("express");
-const errorCatch = require("../middleware/error");
+const errorCatch = require("./middleware/error");
 const morgan = require("morgan");
 const cors = require("cors");
 const helmet = require("helmet");
-const logger = require("../middleware/logger").logger;
+const logger = require("./middleware/logger").logger;
 const { PORT, NODE_ENV } = require("./config");
 const winston = require("winston");
 // routes
