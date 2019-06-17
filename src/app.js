@@ -11,7 +11,7 @@ const logger = require("./middleware/logger").logger;
 const { PORT, NODE_ENV } = require("./config");
 const winston = require("winston");
 // routes
-// const exampleRouter = require('../routes/api/example')
+// const exampleRouter = require('./routes/api/example')
 
 const app = express();
 // make sure cors() is at the top
